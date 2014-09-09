@@ -26,11 +26,17 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bootstrap-sass'
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
 
+gem 'devise'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'spring'
   gem 'quiet_assets'
+end
+
+group :production do 
+  gem 'rails_12factor'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
