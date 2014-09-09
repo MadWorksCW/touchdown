@@ -1,0 +1,25 @@
+= form_for @response do |f|
+  - if @response.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@response.errors.count, "error")} prohibited this response from being saved:"
+      %ul
+        - @response.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name, "Company Name"
+    = f.text_field :name
+
+  .field    
+    = f.label :email
+    = f.text_field :email
+
+
+  = f.fields_for :answers, @response.answers do |answer_form|
+    %h2= answer_form.object.question.text
+    = answer_form.text_field :text
+    = answer_form.hidden_field :question_id
+
+
+  .submit
+    = f.submit 'Submit your Application!'
