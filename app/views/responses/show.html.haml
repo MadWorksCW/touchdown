@@ -1,5 +1,12 @@
 %p#notice= notice
 
+%h1 Application Information
+
+%p Thank you for completing your application.  You can review your answers below and make changes. 
+
+%p
+  %b You can bookmark this page and return to edit at any time
+
 %p
   %b Name:
   = @response.name
@@ -7,6 +14,9 @@
   %b Email:
   = @response.email
 
-= link_to 'Edit', edit_response_path(@response)
-\|
-= link_to 'Back', responses_path
+- @response.answers.question_order.each do |answer|
+  %p 
+    %b= answer.question.text
+    = answer.text
+
+= link_to 'Edit this response', edit_response_path(@response)

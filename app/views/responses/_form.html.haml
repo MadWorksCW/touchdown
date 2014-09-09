@@ -2,8 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name, label: "Company Name"
-    = f.input :email
+    = f.input :name, label: "Company Name", required: true
+    = f.input :email, required: true
 
 
   = f.simple_fields_for :answers, @response.answers do |answer_form|
