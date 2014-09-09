@@ -1,9 +1,11 @@
 %h1 Listing responses
 
-%table
+%table.table
   %tr
     %th Name
     %th Email
+    %th Submitted
+    %th Last edited
     %th
     %th
     %th
@@ -12,6 +14,8 @@
     %tr
       %td= response.name
       %td= response.email
+      %td= response.created_at
+      %td= response.updated_at
       %td= link_to 'Show', response
       %td= link_to 'Edit', edit_response_path(response)
       %td= link_to 'Destroy', response, :method => :delete, :data => { :confirm => 'Are you sure?' }
