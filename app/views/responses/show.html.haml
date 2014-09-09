@@ -2,21 +2,24 @@
 
 %h1 Application Information
 
-%p Thank you for completing your application.  You can review your answers below and make changes. 
+- if @response.created_at > 15.minutes.ago
+  .alert.alert-success
+    %p Thank you for completing your application.  You can review your answers below and make changes. 
 
-%p
-  %b You can bookmark this page and return to edit at any time
+%blockquote
+  %b You can bookmark this url and return to edit at any time before submissions are closed.
+  .url= link_to "Edit my response", edit_response_path(@response, only_path: false), target: :blank
 
-%p
-  %b Name:
-  = @response.name
-%p
-  %b Email:
-  = @response.email
+%hr
+.container
+  %dl
+    %dt Name:
+    %dd= @response.name
 
-- @response.answers.question_order.each do |answer|
-  %p 
-    %b= answer.question.text
-    = answer.text
+    %dt Email:
+    %dd= @response.email
 
-= link_to 'Edit this response', edit_response_path(@response)
+    %br
+    - @response.answers.question_order.each do |answer|
+      %dt= "#{answer.question[:order]}. #{answer.question.text}"
+      %dd= answer.text.blank? ? raw("&nbsp;") : answer.text
