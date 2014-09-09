@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+    @question.order = Question.count + 1
   end
 
   # GET /questions/1/edit
