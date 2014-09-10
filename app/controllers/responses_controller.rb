@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin!, except: [:new, :show, :edit, :create]
+  before_action :require_admin!, except: [:new, :show, :edit, :create, :update]
 
   # GET /responses
   # GET /responses.json
