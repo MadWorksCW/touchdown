@@ -27,6 +27,8 @@ gem 'bootstrap-sass'
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
 
 gem 'devise'
+gem 'rollbar', '~> 1.0.0'
+
 
 group :development do
   gem 'better_errors'
