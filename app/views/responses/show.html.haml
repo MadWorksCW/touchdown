@@ -6,9 +6,10 @@
   .alert.alert-success
     %p Thank you for completing your application.  You can review your answers below and make changes. 
 
-%blockquote
-  %b You can bookmark this url and return to edit at any time before submissions are closed.
-  .url= link_to "Edit my response", edit_response_path(@response, only_path: false), target: :blank
+- if current_user.nil? || current_user.admin?
+  %blockquote
+    %b You can bookmark this url and return to edit at any time before submissions are closed.
+    .url= link_to "Edit my response", edit_response_path(@response, only_path: false), target: :blank
 
 %hr
 .container
