@@ -20,6 +20,4 @@
     %dd= @response.email
 
     %br
-    - @response.answers.question_order.each do |answer|
-      %dt= "#{answer.question[:order]}. #{answer.question.text}"
-      %dd= answer.text.blank? ? raw("&nbsp;") : answer.text
+  = render partial: 'responses/answers', locals: {response: @response}

@@ -7,6 +7,7 @@ gem 'rails', '4.1.5'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -35,6 +36,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'spring'
   gem 'quiet_assets'
+  gem 'pry'
 end
 
 group :production do 

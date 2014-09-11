@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'responses#new'
 
-  resources :responses
+  resources :responses do 
+    get 'score', on: :member
+    resources :scores
+  end
   resources :questions
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140911033213) do
 
   create_table "scores", force: true do |t|
     t.integer  "user_id"
-    t.integer  "response_id"
+    t.uuid     "response_id"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
