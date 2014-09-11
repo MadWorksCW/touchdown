@@ -2,16 +2,17 @@ class ResponsesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_response, only: [:show, :edit, :update, :destroy, :score]
   before_action :authenticate_user!, except: [:new, :show, :edit, :create, :update]
-
+  
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all
+    @responses = Response.all.map(&:decorate)
   end
 
   # GET /responses/1
   # GET /responses/1.json
   def show
+    
   end
 
   def score

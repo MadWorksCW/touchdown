@@ -12,9 +12,7 @@
           .name
             %a.help{href:"#"} (?)
             %b= metric.name
-          .description
-            .name= metric.name
-            %p= metric.description 
+          .description= metric.description 
 
           .btn-group{role: "toolbar", data: {toggle: 'buttons'}}
             %label.btn.btn-default
@@ -46,11 +44,11 @@
       Using the rating scale defined below, rate each applicant’s proposal for each of the six evaluation criteria. The specific definition of each evaluation criterion is stated at the top of the Igniter Application Reviewer Score Sheet.
 
       %ol
-        %li 1 - Does not meet standards required to be a successful Igniter recipient
-        %li 2 - Meets standards or expectations in some regards
-        %li 3 - Meets standards or expectations in most/all respects
-        %li 4 - Exceeds standards and expectations to a marked extent
-        %li 5 - Demonstrates outstanding potential
+        %li Does not meet standards required to be a successful Igniter recipient
+        %li Meets standards or expectations in some regards
+        %li Meets standards or expectations in most/all respects
+        %li Exceeds standards and expectations to a marked extent
+        %li Demonstrates outstanding potential
 
   %hr
   %h2 Applicant Response

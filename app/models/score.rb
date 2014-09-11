@@ -2,7 +2,7 @@ class Score < ActiveRecord::Base
   belongs_to :user
   belongs_to :response
   has_many :ratings
-  
+
   accepts_nested_attributes_for :ratings
 
   def populate_ratings
@@ -11,7 +11,7 @@ class Score < ActiveRecord::Base
     end
   end
 
-  def rating_total
+  def total
     ratings.sum(:rating)
   end
 end

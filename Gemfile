@@ -29,6 +29,7 @@ gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 
 
 gem 'devise'
 gem 'rollbar', '~> 1.0.0'
+gem 'draper', '~> 1.3'
 
 
 group :development do

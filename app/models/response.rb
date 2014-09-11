@@ -11,4 +11,8 @@ class Response < ActiveRecord::Base
     end
     answers
   end
+
+  def score_for(user)
+    scores.where(user_id: user).first
+  end
 end

@@ -11,6 +11,7 @@ class TD.ScoringPage
 
   initListeners: =>
     $('.score-panel').on 'change', 'input[type=radio]', @onRadioChange
+    $('.score-panel').on 'click', '.help', @showHelp
     @setInitialState()
 
   setInitialState: -> 
@@ -29,3 +30,7 @@ class TD.ScoringPage
 
   setInputClass: ($input) ->
     $input.closest('label').addClass(TD.ScoringPage.valueClassMap[$input.val()])
+
+  showHelp: (ev) ->
+    $(ev.target).closest('.metric').find('.description').toggle()
+    false
