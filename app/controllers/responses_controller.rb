@@ -1,7 +1,7 @@
 class ResponsesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_response, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin!, except: [:new, :show, :edit, :create, :update]
+  before_action :authenticate_user!, except: [:new, :show, :edit, :create, :update]
 
   # GET /responses
   # GET /responses.json

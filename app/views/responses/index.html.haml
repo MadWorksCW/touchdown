@@ -8,7 +8,8 @@
     %th Last edited
     %th
     %th
-    %th
+    - if current_user.admin?
+      %th
 
   - @responses.each do |response|
     %tr
@@ -18,7 +19,8 @@
       %td= response.updated_at
       %td= link_to 'Show', response
       %td= link_to 'Edit', edit_response_path(response)
-      %td= link_to 'Destroy', response, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - if current_user.admin?
+        %td= link_to 'Destroy', response, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
