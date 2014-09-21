@@ -27,6 +27,7 @@ gem 'bootstrap-sass'
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
 
 gem 'devise'
+gem 'devise_invitable'
 gem 'rollbar', '~> 1.0.0'
 
 
@@ -35,6 +36,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'spring'
   gem 'quiet_assets'
+  gem 'letter_opener'
 end
 
 group :production do 

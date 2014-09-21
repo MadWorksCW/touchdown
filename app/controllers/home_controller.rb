@@ -3,7 +3,11 @@ class HomeController < ApplicationController
     if current_user.nil?
       redirect_to new_response_path
     else
-      redirect_to responses_path
+      redirect_to dashboard_path
     end
+  end
+
+  def dashboard
+
   end
 end
