@@ -1,18 +1,27 @@
 class ResponsesController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :set_response, only: [:show, :edit, :update, :destroy]
+  before_action :set_response, only: [:show, :edit, :update, :destroy, :score]
   before_action :authenticate_user!, except: [:new, :show, :edit, :create, :update]
   before_action :require_admin!, only: [:destroy]
-
+  
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all
+    @responses = Response.all.map(&:decorate)
   end
 
   # GET /responses/1
   # GET /responses/1.json
   def show
+    
+  end
+
+  def score
+    score = @response.scores.find_or_create_by(user_id: current_user.id)
+
+    score.populate_ratings if score.ratings.empty?
+    score.save
+    redirect_to [@response, score]
   end
 
   # GET /responses/new

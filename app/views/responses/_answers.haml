@@ -1,0 +1,5 @@
+-# locals: response
+%dl.answers
+  - @response.answers.question_order.each do |answer|
+    %dt= "#{answer.question[:order]}. #{answer.question.text}"
+    %dd= answer.text.blank? ? raw("&nbsp;") : answer.text

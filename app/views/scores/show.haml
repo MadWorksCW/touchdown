@@ -1,0 +1,59 @@
+.scoring
+  %h1= @response.name
+
+  .score-panel
+    = form_for [@response, @score] do |f|
+      = f.fields_for :ratings, @score.ratings.order(:metric_id) do |rating_fields|
+        - metric = rating_fields.object.metric
+        .metric
+          = rating_fields.hidden_field :id
+          = rating_fields.hidden_field :metric_id
+           
+          .name
+            %a.help{href:"#"} (?)
+            %b= metric.name
+          .description= metric.description 
+
+          .btn-group{role: "toolbar", data: {toggle: 'buttons'}}
+            %label.btn.btn-default
+              = rating_fields.radio_button :rating, 5
+              5
+            %label.btn.btn-default
+              = rating_fields.radio_button :rating, 4
+              4
+            %label.btn.btn-default
+              = rating_fields.radio_button :rating, 3
+              3
+            %label.btn.btn-default
+              = rating_fields.radio_button :rating, 2
+              2
+            %label.btn.btn-default
+              = rating_fields.radio_button :rating, 1
+              1
+
+      .form-group
+        = f.label :comments, "Comments:"
+        = f.text_area :comments, class: 'form-control'
+
+      = f.submit "Save", class: "btn btn-primary"
+
+          
+  .instructions
+    %h2 Scoring Instructions
+    %blockquote
+      Using the rating scale defined below, rate each applicant’s proposal for each of the six evaluation criteria. The specific definition of each evaluation criterion is stated at the top of the Igniter Application Reviewer Score Sheet.
+
+      %ol
+        %li Does not meet standards required to be a successful Igniter recipient
+        %li Meets standards or expectations in some regards
+        %li Meets standards or expectations in most/all respects
+        %li Exceeds standards and expectations to a marked extent
+        %li Demonstrates outstanding potential
+
+  %hr
+  %h2 Applicant Response
+  .container
+    = render partial: 'responses/answers', locals: {response: @response}
+
+:javascript
+  new TD.ScoringPage;

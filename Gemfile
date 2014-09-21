@@ -7,6 +7,7 @@ gem 'rails', '4.1.5'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -29,6 +30,7 @@ gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 
 gem 'devise'
 gem 'devise_invitable'
 gem 'rollbar', '~> 1.0.0'
+gem 'draper', '~> 1.3'
 
 
 group :development do
@@ -37,6 +39,7 @@ group :development do
   gem 'spring'
   gem 'quiet_assets'
   gem 'letter_opener'
+  gem 'pry'
 end
 
 group :production do 
