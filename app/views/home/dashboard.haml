@@ -1,2 +1,23 @@
-= link_to "Invite someone to score", new_user_invitation_path
-= link_to "View Reponses", responses_path
+.dashboard
+  %h1 Admininstrator Dashboard
+
+  .panel.panel-default.actions
+    .panel-heading Actions
+    .panel-body
+      = link_to "Invite someone to score", new_user_invitation_path, class: 'btn btn-default btn-large'
+      = link_to "View Reponses", responses_path, class: 'btn btn-default btn-large'
+
+  .panel.panel-default
+    .panel-heading Responses
+    .panel-body #{@response_count} Total Responses
+
+  .panel.panel-default
+    .panel-heading Scoring Completion
+    .panel-body
+      - @scoring_completion.each do |name, count|
+        = name
+        - percent = number_to_percentage(count*100 / @response_count.to_f, precision: 0) 
+        - success_class = "progress-bar-success" if count == @response_count
+        .progress
+          .progress-bar{class: success_class, role: "progressbar", "aria-valuenow" => count, "aria-valuemin" => "0", "aria-valuemax" => @response_count, style: "width: #{percent};" }
+            #{count} / #{@response_count}

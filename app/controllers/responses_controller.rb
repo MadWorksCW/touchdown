@@ -26,6 +26,7 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
+    @closed = true
     @response = Response.new
     @response.populate_answers
   end

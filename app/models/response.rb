@@ -15,4 +15,13 @@ class Response < ActiveRecord::Base
   def score_for(user)
     scores.where(user_id: user).first
   end
+
+  def total_score
+    scores.joins(:ratings).sum('ratings.rating')
+  end
+
+  def average_score
+    total_score / scores.count.to_f
+  end
+
 end

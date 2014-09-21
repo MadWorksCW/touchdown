@@ -1,3 +1,5 @@
 %h1 Madworks Accelerator Fall 2014 Application
-
-= render 'form'
+- if @closed
+  %h1 Sorry, applications are closed.
+- else
+  = render 'form'
