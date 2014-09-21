@@ -1,7 +1,7 @@
 class Score < ActiveRecord::Base
   belongs_to :user
   belongs_to :response
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
 
   accepts_nested_attributes_for :ratings
 
