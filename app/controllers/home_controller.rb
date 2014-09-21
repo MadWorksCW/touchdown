@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   def dashboard
     @response_count = Response.count
-    @scoring_completion = User.joins(:scores).select("users.*, count(scores.id) as score_count").group('users.id').collect do |user|
+    @scoring_completion = User.joins("LEFT JOIN scores on scores.user_id = users.id").select("users.*, count(scores.id) as score_count").group('users.id').collect do |user|
       [user.display_name, user.score_count]
     end
 
