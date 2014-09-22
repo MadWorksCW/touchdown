@@ -1,6 +1,6 @@
 class Response < ActiveRecord::Base
   has_many :answers, dependent: :delete_all
-  has_many :scores
+  has_many :scores, dependent: :destroy
   accepts_nested_attributes_for :answers
   validates :name, :email, presence: true
 

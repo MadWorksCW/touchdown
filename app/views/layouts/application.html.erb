@@ -24,5 +24,16 @@
     <% end %>
     <%= yield %>
   </div>
+  <footer>
+    <div class="container">
+      <% if current_user.nil? %>
+        <%= link_to "Sign in to view/score results", new_user_session_path %>
+      <% end %>
+      <!-- <div class="copyright">
+        &copy; <%= Time.now.year %>, Ten Forward Consulting, Inc.
+      </div> -->
+    </div>
+  </footer>
+
 </body>
 </html>
