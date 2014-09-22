@@ -1,5 +1,6 @@
 %h1 Madworks Accelerator Fall 2014 Application
 - if @closed
   %h1 Sorry, applications are closed.
+  = link_to "Sign in to view/score results", new_user_session_path
 - else
   = render 'form'
