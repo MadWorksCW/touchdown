@@ -15,6 +15,10 @@ class HomeController < ApplicationController
     @scoring_completion = User.joins("LEFT JOIN scores on scores.user_id = users.id").select("users.*, count(scores.id) as score_count").group('users.id').collect do |user|
       [user.display_name, user.score_count]
     end
+  end
 
+  def results
+    @responses = Response.all.sort_by {|r| r.total_score}.reverse
+    @metrics = Metric.all
   end
 end

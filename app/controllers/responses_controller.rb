@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :set_response, only: [:show, :edit, :update, :destroy, :score]
+  before_action :set_response, only: [:show, :edit, :update, :destroy, :score, :results]
   before_action :authenticate_user!, except: [:new, :show, :edit, :create, :update]
   before_action :require_admin!, only: [:destroy]
   
@@ -22,6 +22,11 @@ class ResponsesController < ApplicationController
     score.populate_ratings if score.ratings.empty?
     score.save
     redirect_to [@response, score]
+  end
+
+  def results
+    @metrics = Metric.all
+    @scores = @response.valid_scores
   end
 
   # GET /responses/new

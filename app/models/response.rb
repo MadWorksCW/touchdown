@@ -16,12 +16,20 @@ class Response < ActiveRecord::Base
     scores.where(user_id: user).first
   end
 
-  def total_score
-    scores.joins(:ratings).sum('ratings.rating')
+  def total_score(metric=nil)
+    query = valid_scores
+    if metric
+      query = query.where(ratings: {metric_id: metric.id})
+    end
+    query.sum('ratings.rating')
   end
 
-  def average_score
-    total_score / scores.count.to_f
+  def valid_scores
+    scores.joins(:ratings).where("ratings.rating is not null").uniq
+  end
+
+  def average_score(metric=nil)
+    total_score(metric) / valid_scores.count.to_f
   end
 
 end

@@ -1,0 +1,24 @@
+%h1 Scoring Summary
+%blockquote
+  Metrics left unrated are scored as zero and affect scoring
+  %br
+  If a person didn't score the application at all, that has no effect on scoring.
+
+%table.table
+  %tr
+    %th Applicant
+    - @metrics.each do |metric|
+      %th= metric.name
+    %td Total Score
+    %td # Ratings
+    %td Average Score
+
+  - @responses.each do |response|
+    %tr
+      %td= link_to response.name, response
+      - @metrics.each do |metric|
+        %td= score(response.average_score(metric))
+      %td= link_to response.total_score, results_response_path(response)
+      %td= response.valid_scores.count
+      %td= score(response.average_score)
+    

@@ -1,0 +1,17 @@
+%h1 Scoring Summary: #{@response.name}
+
+= link_to "All Results", results_path
+
+%table.table
+  %tr
+    %th Scorer
+    - @metrics.each do |metric|
+      %th= metric.name
+    %td Total Score
+  
+  - @scores.each do |score|
+    %tr
+      %td= score.user.display_name
+      - @metrics.each do |metric|
+        %td= score.ratings.where(metric_id: metric.id).first.rating
+      %td= score.total

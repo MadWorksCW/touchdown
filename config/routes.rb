@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   get 'dashboard', to: 'home#dashboard', as: 'dashboard'
+  get "results", to: 'home#results', as: 'results'
 
   resources :responses do 
     get 'score', on: :member
+    get 'results', on: :member
     resources :scores
   end
   resources :questions
