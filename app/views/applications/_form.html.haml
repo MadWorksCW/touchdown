@@ -1,0 +1,10 @@
+= simple_form_for(@application) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :opened_at, as: :datetime_picker
+    = f.input :closed_at, as: :datetime_picker
+
+  .form-actions
+    = f.button :submit

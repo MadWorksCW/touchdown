@@ -25,7 +25,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'bootstrap-sass'
-gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
+gem 'simple_form', '~> 3.1.0'
+gem 'momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 gem 'devise'
 gem 'devise_invitable'
@@ -42,7 +44,7 @@ group :development do
   gem 'pry'
 end
 
-group :production do 
+group :production do
   gem 'rails_12factor'
 end
 # Use ActiveModel has_secure_password

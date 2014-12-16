@@ -4,7 +4,7 @@
 
 - if @response.created_at > 15.minutes.ago
   .alert.alert-success
-    %p Thank you for completing your application.  You can review your answers below and make changes. 
+    %p Thank you for completing your application.  You can review your answers below and make changes.
 
 - if current_user.nil? || current_user.admin?
   %blockquote

@@ -3,10 +3,11 @@ class Response < ActiveRecord::Base
   has_many :scores, dependent: :destroy
   accepts_nested_attributes_for :answers
   validates :name, :email, presence: true
+  belongs_to :application
 
 
   def populate_answers
-    Question.all.each do |q|
+    application.questions.each do |q|
       answers << Answer.new(question_id: q.id)
     end
     answers

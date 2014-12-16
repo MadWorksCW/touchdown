@@ -1,7 +1,7 @@
 class ScoresController < ApplicationController
   before_action :set_response
   before_action :set_score, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /scores
   # GET /scores.json
@@ -19,7 +19,7 @@ class ScoresController < ApplicationController
   def update
     respond_to do |format|
       if @score.update(score_params)
-        format.html { redirect_to responses_path, notice: 'Score was successfully updated.' }
+        format.html { redirect_to application_responses_path(@appliction), notice: 'Score was successfully updated.' }
         format.json { render :show, status: :ok, location: @score }
       else
         format.html { render :edit }

@@ -20,7 +20,3 @@
       %td= link_to "Score #{response.total_score}", score_response_path(response)
       - if current_user.admin?
         %td= link_to 'Edit', edit_response_path(response)
-
-%br
-
-= link_to 'New Response', new_response_path

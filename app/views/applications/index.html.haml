@@ -1,0 +1,22 @@
+%h1 Listing applications
+
+%table.table
+  %tr
+    %th Name
+    %th Open date
+    %th Close date
+    %th
+    %th
+    %th
+
+  - @applications.each do |application|
+    %tr
+      %td= link_to application.name, application
+      %td= application.opened_at
+      %td= application.closed_at
+      %td= link_to 'Edit', edit_application_path(application)
+      %td= link_to 'Duplicate', duplicate_application_path(application)
+
+%br
+
+= link_to 'New Application', new_application_path
