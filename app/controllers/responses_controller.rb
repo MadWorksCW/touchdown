@@ -3,17 +3,19 @@ class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy, :score, :results]
   before_action :authenticate_user!, except: [:new, :show, :edit, :create, :update]
   before_action :require_admin!, only: [:destroy]
-  
+
+  include NestedApplicationController
+
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all.map(&:decorate)
+    @responses = @application.responses.all.map(&:decorate)
   end
 
   # GET /responses/1
   # GET /responses/1.json
   def show
-    
+
   end
 
   def score
@@ -25,14 +27,14 @@ class ResponsesController < ApplicationController
   end
 
   def results
-    @metrics = Metric.all
+    @metrics = @application.metrics
     @scores = @response.valid_scores
   end
 
   # GET /responses/new
   def new
-    @closed = true
-    @response = Response.new
+    @closed = @application.closed?
+    @response = @application.responses.build
     @response.populate_answers
   end
 
@@ -43,11 +45,11 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.json
   def create
-    @response = Response.new(response_params)
+    @response = @application.responses.build(response_params)
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to @response, notice: 'Response was successfully created.' }
+        format.html { redirect_to [@application, @response], notice: 'Response was successfully created.' }
         format.json { render :show, status: :created, location: @response }
       else
         format.html { render :new }

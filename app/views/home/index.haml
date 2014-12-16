@@ -1,0 +1,4 @@
+%h1 Please choose an open application:
+%ul
+  - @applications.each do |app|
+    %li= link_to app.name, new_application_response_path(app)

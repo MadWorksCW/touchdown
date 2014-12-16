@@ -1,11 +1,12 @@
 class MetricsController < ApplicationController
   before_action :set_metric, only: [:show, :edit, :update, :destroy]
   before_filter :require_admin!
+  include NestedApplicationController
 
   # GET /metrics
   # GET /metrics.json
   def index
-    @metrics = Metric.all
+    @metrics = @application.metrics
   end
 
   # GET /metrics/1
@@ -15,7 +16,7 @@ class MetricsController < ApplicationController
 
   # GET /metrics/new
   def new
-    @metric = Metric.new
+    @metric = @application.metrics.build
   end
 
   # GET /metrics/1/edit
@@ -25,11 +26,11 @@ class MetricsController < ApplicationController
   # POST /metrics
   # POST /metrics.json
   def create
-    @metric = Metric.new(metric_params)
+    @metric = @application.metrics.build(metric_params)
 
     respond_to do |format|
       if @metric.save
-        format.html { redirect_to @metric, notice: 'Metric was successfully created.' }
+        format.html { redirect_to application_metrics_path(@application), notice: 'Metric was successfully created.' }
         format.json { render :show, status: :created, location: @metric }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class MetricsController < ApplicationController
   def update
     respond_to do |format|
       if @metric.update(metric_params)
-        format.html { redirect_to @metric, notice: 'Metric was successfully updated.' }
+        format.html { redirect_to application_metrics_path(@application), notice: 'Metric was successfully updated.' }
         format.json { render :show, status: :ok, location: @metric }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class MetricsController < ApplicationController
   def destroy
     @metric.destroy
     respond_to do |format|
-      format.html { redirect_to metrics_url, notice: 'Metric was successfully destroyed.' }
+      format.html { redirect_to application_metrics_path(@application), notice: 'Metric was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

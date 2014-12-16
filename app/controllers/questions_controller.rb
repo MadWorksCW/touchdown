@@ -1,11 +1,12 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_filter :require_admin!
+  include NestedApplicationController
 
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = @application.questions
   end
 
   # GET /questions/1
@@ -15,8 +16,8 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
-    @question.order = Question.count + 1
+    @question = @application.questions.build
+    @question.order = @application.questions.count + 1
   end
 
   # GET /questions/1/edit
@@ -26,11 +27,11 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
+    @question = @application.questions.build(question_params)
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to questions_path, notice: 'Question was successfully created.' }
+        format.html { redirect_to application_questions_path(@application), notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to application_questions_path(@application), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to application_questions_path(@application), notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,4 +1,4 @@
-%h1 Madworks Accelerator Fall 2014 Application
+%h1= @application.name
 - if @closed
   %h1 Sorry, applications are closed.
   = link_to "Sign in to view/score results", new_user_session_path

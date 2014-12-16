@@ -1,21 +1,28 @@
 Rails.application.routes.draw do
-  devise_for :users,  :controllers => { registrations: "registrations", invitations: 'invitations' }
-  resources :metrics
 
+
+  devise_for :users,  :controllers => { registrations: "registrations", invitations: 'invitations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
   get 'dashboard', to: 'home#dashboard', as: 'dashboard'
-  get "results", to: 'home#results', as: 'results'
-
-  resources :responses do 
+  resources :responses, only: [:show, :edit] do
     get 'score', on: :member
     get 'results', on: :member
-    resources :scores
   end
-  resources :questions
+  resources :applications do
+    get 'results', on: :member
+    get 'duplicate', on: :member
+    get 'open', on: :member
+    get 'close', on: :member
+    resources :responses do
+      resources :scores
+    end
+    resources :questions
+    resources :metrics
+  end
 
 
   # Example of regular route:

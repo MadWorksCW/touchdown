@@ -1,6 +1,6 @@
 %h1 Listing metrics
 
-%table
+%table.table
   %tr
     %th Name
     %th Description
@@ -12,10 +12,10 @@
     %tr
       %td= metric.name
       %td= metric.description
-      %td= link_to 'Show', metric
-      %td= link_to 'Edit', edit_metric_path(metric)
-      %td= link_to 'Destroy', metric, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Edit', edit_application_metric_path(@application, metric)
+      %td= link_to 'Destroy', [@application, metric], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Metric', new_metric_path
+= link_to 'New Metric', new_application_metric_path(@application)
+= link_to "Back to Application", @application
