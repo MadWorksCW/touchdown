@@ -33,9 +33,12 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
-    @closed = @application.closed?
-    @response = @application.responses.build
-    @response.populate_answers
+    if @application.active?
+      @response = @application.responses.build
+      @response.populate_answers
+    else
+      render text: "This application is not yet open.  Please check back soon!", layout: true
+    end
   end
 
   # GET /responses/1/edit
