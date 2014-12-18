@@ -33,11 +33,13 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
-    if @application.active?
+    if @application.closed?
+      flash.now.alert = "Sorry, this application is now closed."
+    elsif !@application.open?
+      flash.now.alert = "Sorry, this application is not open yet.  Please check back soon."
+    else
       @response = @application.responses.build
       @response.populate_answers
-    else
-      render text: "This application is not yet open.  Please check back soon!", layout: true
     end
   end
 
