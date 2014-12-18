@@ -1,4 +1,7 @@
-%h1 Please choose an open application:
-%ul
-  - @applications.each do |app|
-    %li= link_to app.name, new_application_response_path(app)
+- if @applications.count > 0
+  %h1 Please choose an open application:
+  %ul
+    - @applications.each do |app|
+      %li= link_to app.name, new_application_response_path(app)
+- else
+  %h2 There are no open applications at this time.
