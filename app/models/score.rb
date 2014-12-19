@@ -6,7 +6,7 @@ class Score < ActiveRecord::Base
   accepts_nested_attributes_for :ratings
 
   def populate_ratings
-    Metric.all.each do |metric|
+    response.application.metrics.all.each do |metric|
       ratings.build(metric: metric)
     end
   end

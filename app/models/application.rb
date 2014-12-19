@@ -3,7 +3,7 @@ class Application < ActiveRecord::Base
   has_many :metrics, dependent: :delete_all
   has_many :responses, dependent: :delete_all
 
-  scope :open, -> { where("opened_at < ? AND closed_at > ?", Time.now, Time.now)}
+  scope :open, -> { where("opened_at < ? AND (closed_at > ? OR closed_at IS NULL)", Time.now, Time.now)}
 
   def closed?
     !!closed_at

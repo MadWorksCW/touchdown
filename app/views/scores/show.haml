@@ -8,11 +8,11 @@
         .metric
           = rating_fields.hidden_field :id
           = rating_fields.hidden_field :metric_id
-           
+
           .name
             %a.help{href:"#"} (?)
             %b= metric.name
-          .description= metric.description 
+          .description= metric.description
 
           .btn-group{role: "toolbar", data: {toggle: 'buttons'}}
             %label.btn.btn-default
@@ -37,11 +37,11 @@
 
       = f.submit "Save", class: "btn btn-primary"
 
-          
+
   .instructions
     %h2 Scoring Instructions
-    %blockquote
-      Using the rating scale defined below, rate each applicant’s proposal for each of the six evaluation criteria. The specific definition of each evaluation criterion is stated at the top of the Igniter Application Reviewer Score Sheet.
+    %blockquote<
+      Using the rating scale defined below, rate each applicant’s proposal for each of the six evaluation criteria. The specific definition of each evaluation criterion can be seen by clicking the (?) next to the criterion.
 
       %ol
         %li Does not meet standards required to be a successful Igniter recipient

@@ -19,7 +19,7 @@ class ScoresController < ApplicationController
   def update
     respond_to do |format|
       if @score.update(score_params)
-        format.html { redirect_to application_responses_path(@appliction), notice: 'Score was successfully updated.' }
+        format.html { redirect_to application_responses_path(@score.response.application), notice: 'Score was successfully updated.' }
         format.json { render :show, status: :ok, location: @score }
       else
         format.html { render :edit }

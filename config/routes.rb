@@ -11,15 +11,14 @@ Rails.application.routes.draw do
   resources :responses, only: [:show, :edit] do
     get 'score', on: :member
     get 'results', on: :member
+    resources :scores
   end
   resources :applications do
     get 'results', on: :member
     get 'duplicate', on: :member
     get 'open', on: :member
     get 'close', on: :member
-    resources :responses do
-      resources :scores
-    end
+    resources :responses
     resources :questions
     resources :metrics
   end
