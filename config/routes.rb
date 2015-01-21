@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :responses, only: [:show, :edit] do
     get 'score', on: :member
     get 'results', on: :member
+    get 'new', on: :collection, to: redirect('/')
     resources :scores
   end
   resources :applications do
