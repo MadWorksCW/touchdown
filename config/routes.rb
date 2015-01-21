@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   get 'dashboard', to: 'applications#index', as: 'dashboard'
-  resources :responses, only: [:show, :edit] do
+  resources :responses, only: [:show, :edit, :update] do
     get 'score', on: :member
     get 'results', on: :member
     get 'new', on: :collection, to: redirect('/')
