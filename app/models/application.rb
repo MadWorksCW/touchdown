@@ -20,6 +20,7 @@ class Application < ActiveRecord::Base
   def scoring_completion
     tuples = User.joins("LEFT JOIN scores on scores.user_id = users.id INNER JOIN responses on scores.response_id = responses.id")
         .where(responses: {application_id: self.id})
+        .where.not(scores: {finished_at: nil})
         .select("users.*, count(scores.id) as score_count")
         .group('users.id')
     tuples.collect do |user|
