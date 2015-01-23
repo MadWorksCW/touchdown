@@ -27,7 +27,7 @@ class ResponsesController < ApplicationController
   end
 
   def results
-    @metrics = @application.metrics
+    @metrics = @response.application.metrics
     @scores = @response.valid_scores
   end
 
